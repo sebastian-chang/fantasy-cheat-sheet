@@ -10,6 +10,7 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
 import CheatSheets from '../CheatSheets/CheatSheets'
+import CheatSheet from '../CheatSheet/CheatSheet'
 
 class App extends Component {
   constructor () {
@@ -57,8 +58,11 @@ class App extends Component {
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
 
-          <AuthenticatedRoute user={user} path='/cheat-sheet' render={() => (
+          <AuthenticatedRoute user={user} exact path='/cheat-sheet' render={() => (
             <CheatSheets user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/cheat-sheet/:id' render={() => (
+            <CheatSheet user={user} />
           )} />
         </main>
       </Fragment>
