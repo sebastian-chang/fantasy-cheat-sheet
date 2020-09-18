@@ -4,8 +4,7 @@ import Select from 'react-select'
 
 import {
     MDBContainer, MDBListGroup, MDBListGroupItem, MDBIcon,
-    MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter,
-    MDBBtn, MDBForm
+    MDBModal, MDBModalHeader, MDBModalBody,
 } from 'mdbreact'
 
 import Button from '../shared/Button/Button'
@@ -15,14 +14,17 @@ import apiUrl from '../../apiConfig'
 import axios from 'axios'
 
 import { teams, positions } from '../../footballVariables'
+import messages from '../AutoDismissAlert/messages'
 
 const CheatSheet = props => {
+    const [updating, setUpdating] = useState(false)
     const [sheet, setSheet] = useState({})
     const [player, setPlayer] = useState({
         'first_name': '',
         'last_name': '',
         'position': '',
         'current_team': '',
+        'id': 0,
         'sheet': props.match.params.id,
     })
     const [tempSheet, setTempSheet] = useState({})
@@ -52,21 +54,12 @@ const CheatSheet = props => {
             'last_name': '',
             'position': '',
             'current_team': '',
+            'id': 0,
             'sheet': props.match.params.id,
         })
         setPlayerIsOpen(!playerModalIsOpen)
+        setUpdating(false)
     }
-    // // Whenever the player modal closes reset
-    // const closePlayerModal = () => {
-    //     setPlayer({
-    //         'first_name': '',
-    //         'last_name': '',
-    //         'position': '',
-    //         'current_team': '',
-    //         'sheet': props.match.params.id,
-    //     })
-    //     setPlayerIsOpen(false)
-    // }
     // If user cancels out of update revert back to previous title
     const openUpdatePlayerModal = (playerID) => {
         const index = sheet.players.findIndex(player => { return player.id === playerID })
@@ -77,8 +70,10 @@ const CheatSheet = props => {
             'last_name': player.last_name,
             'position': player.position,
             'current_team': player.current_team,
+            'id': player.id,
             'sheet': props.match.params.id,
         })
+        setUpdating(true)
         setPlayerIsOpen(true)
     }
 
@@ -94,6 +89,7 @@ const CheatSheet = props => {
             .catch(console.error)
     }, [])
 
+    // Sheet API calls
     const deleteSheet = () => {
         axios({
             url: apiUrl + `/sheets/${props.match.params.id}`,
@@ -102,11 +98,26 @@ const CheatSheet = props => {
                 'Authorization': `Token ${props.user.token}`
             }
         })
-            .then(() => props.history.push('/cheat-sheet'))
-            .catch(console.error)
+            .then(() => {
+                props.history.push('/cheat-sheet')
+                props.msgAlert({
+                    heading: 'Delete sheet success',
+                    message: messages.deletedSheetSuccess,
+                    variant: 'success'
+                })
+            })
+            .catch(error => {
+                console.error
+                msgAlert({
+                    heading: 'Delete sheet failed with error: ' + error.message,
+                    message: messages.deletedSheetFailure,
+                    variant: 'danger'
+                })
+            })
     }
 
-    const updateSheet = () => {
+    const updateSheet = (event) => {
+        event.preventDefault()
         return (axios({
             url: apiUrl + `/sheets/${props.match.params.id}/`,
             method: 'PATCH',
@@ -120,11 +131,24 @@ const CheatSheet = props => {
             .then(res => {
                 setSheet(res.data.sheet)
                 setTitleIsOpen(false)
+                props.msgAlert({
+                    heading: 'Update sheet success',
+                    message: messages.updatedSheetSuccess,
+                    variant: 'success'
+                })
             })
-            .catch(console.error)
+            .catch(error => {
+                console.error
+                msgAlert({
+                    heading: 'Update sheet failed with error: ' + error.message,
+                    message: messages.updatedSheetFailure,
+                    variant: 'danger'
+                })
+            })
         )
     }
 
+    // Player API calls
     const addPlayer = (event) => {
         event.preventDefault()
         console.log('what is happening', player)
@@ -150,9 +174,59 @@ const CheatSheet = props => {
                     const editedSheet = Object.assign({}, prevSheet, updatedField)
                     return editedSheet
                 })
+                props.msgAlert({
+                    heading: 'Create player success',
+                    message: messages.createdPlayerSuccess,
+                    variant: 'success'
+                })
             })
             .then(() => playerToggleModal())
-            .catch(console.error)
+            .catch(error => {
+                console.error
+                msgAlert({
+                    heading: 'Create player failed with error: ' + error.message,
+                    message: messages.createdPlayerFailure,
+                    variant: 'danger'
+                })
+            })
+        )
+    }
+    const updatePlayer = (event) => {
+        event.preventDefault()
+        return (axios({
+            url: apiUrl + `/players/${player.id}/`,
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Token ${props.user.token}`
+            },
+            data: {
+                player: player
+            }
+        })
+            .then(() => {
+                const index = sheet.players.findIndex(findPlayer => { return findPlayer.id === player.id })
+                const newPlayers = [...sheet.players]
+                newPlayers[index] = player
+                setSheet(prevSheet => {
+                    const updatedField = { 'players': newPlayers }
+                    const editedSheet = Object.assign({}, prevSheet, updatedField)
+                    return editedSheet
+                })
+                props.msgAlert({
+                    heading: 'Update player success',
+                    message: messages.updatedPlayerSuccess,
+                    variant: 'success'
+                })
+            })
+            .then(() => playerToggleModal())
+            .catch(error => {
+                console.error
+                msgAlert({
+                    heading: 'Update player failed with error: ' + error.message,
+                    message: messages.updatedPlayerFailure,
+                    variant: 'danger'
+                })
+            })
         )
     }
     const deletePlayer = (playerID) => {
@@ -173,8 +247,20 @@ const CheatSheet = props => {
                     const editedSheet = Object.assign({}, prevSheet, updatedField)
                     return editedSheet
                 })
+                props.msgAlert({
+                    heading: 'Delete player success',
+                    message: messages.deletedPlayerSuccess,
+                    variant: 'success'
+                })
             })
-            .catch(console.error)
+            .catch(error => {
+                console.error
+                msgAlert({
+                    heading: 'Delete player failed with error: ' + error.message,
+                    message: messages.deletedPlayerFailure,
+                    variant: 'danger'
+                })
+            })
     }
 
     // Handles input changes to the sheets title
@@ -215,6 +301,7 @@ const CheatSheet = props => {
         })
     }
 
+    // Generates a list of players in each sheet
     let player_list = ''
     if (sheet.players) {
         player_list = sheet.players.map(player => {
@@ -232,7 +319,7 @@ const CheatSheet = props => {
     return (
         <div>
             <h2>{sheet.title}
-            <span style={{ 'cursor': 'pointer', 'fontSize': '.9rem', 'padding-left': '25px' }}><MDBIcon onClick={titleToggleModal} icon="pencil-alt" /></span></h2>
+                <span style={{ 'cursor': 'pointer', 'fontSize': '.9rem', 'paddingLeft': '25px' }}><MDBIcon onClick={titleToggleModal} icon="pencil-alt" /></span></h2>
             <MDBContainer>
                 <MDBListGroup style={{ width: '60vw' }}>
                     {player_list}
@@ -244,21 +331,24 @@ const CheatSheet = props => {
 
             {/* Update cheat sheet title modal */}
             <MDBModal isOpen={titleModalIsOpen} toggle={cancelUpdate}>
-                <MDBModalHeader toggle={cancelUpdate}>Update: {sheet.title}</MDBModalHeader>
+                <MDBModalHeader toggle={cancelUpdate}>Update title</MDBModalHeader>
                 <MDBModalBody>
-                    <Input eventHandler={handleSheetChange} name={'title'} value={sheet.title} label={'Title'} type={'text'} />
+                    <form onSubmit={updateSheet}>
+                        <Input eventHandler={handleSheetChange} name={'title'} value={sheet.title} label={'Title'} type={'text'} required={true}/>
+                        {/* Footer */}
+                        <div sytle={{ 'position': 'absolute', 'right': 0, 'background': '#eee' }}>
+                            <Button clickFunction={cancelUpdate} buttonLabel={'Cancel'} />
+                            <Button buttonLabel={'Update Sheet'} type={'submit'} />
+                        </div>
+                    </form>
                 </MDBModalBody>
-                <MDBModalFooter style={{ 'background': '#eee' }}>
-                    <Button clickFunction={cancelUpdate} buttonLabel={'Cancel'} />
-                    <Button clickFunction={updateSheet} buttonLabel={'Update Sheet'} />
-                </MDBModalFooter>
             </MDBModal>
 
             {/* Player modal */}
             <MDBModal isOpen={playerModalIsOpen} toggle={playerToggleModal}>
-                <MDBModalHeader toggle={playerToggleModal}>Add a player</MDBModalHeader>
+                <MDBModalHeader toggle={playerToggleModal}>{updating ? 'Update player' : 'Add a player'}</MDBModalHeader>
                 <MDBModalBody>
-                    <form onSubmit={addPlayer}>
+                    <form onSubmit={updating ? updatePlayer : addPlayer}>
                         <Input eventHandler={handlePlayerChange} name={'first_name'} value={player.first_name} label={'First Name'} type={'text'} required={true} />
                         <Input eventHandler={handlePlayerChange} name={'last_name'} value={player.last_name} label={'Last Name'} type={'text'} required={true} />
 
@@ -300,7 +390,7 @@ const CheatSheet = props => {
                         {/* Footer */}
                         <div sytle={{ 'position': 'absolute', 'right': 0, 'background': '#eee' }}>
                             <Button clickFunction={playerToggleModal} buttonLabel={'Cancel'} type={'button'} />
-                            <Button buttonLabel={'Add Player'} type={'submit'} />
+                            <Button buttonLabel={updating ? 'Update Player' : 'Add Player'} type={'submit'} />
                         </div>
                     </form>
                 </MDBModalBody>

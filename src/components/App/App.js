@@ -59,10 +59,10 @@ class App extends Component {
           )} />
 
           <AuthenticatedRoute user={user} exact path='/cheat-sheet' render={() => (
-            <CheatSheets user={user} />
+            <CheatSheets user={user} msgAlert={this.msgAlert} />
           )} />
           <AuthenticatedRoute user={user} exact path='/cheat-sheet/:id' render={() => (
-            <CheatSheet user={user} />
+            <CheatSheet user={user} msgAlert={this.msgAlert} />
           )} />
         </main>
       </Fragment>
