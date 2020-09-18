@@ -44,8 +44,8 @@ const CheatSheet = props => {
         }
       }
     })
+    // add newly created cheat sheet to local state
       .then(res => {
-        console.log('the response data ', res.data)
         const new_list = sheets
         new_list.push(res.data.sheet)
         setSheets(new_list)
