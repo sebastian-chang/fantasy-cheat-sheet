@@ -37,5 +37,5 @@ export const positions = [
     {value: 'RB', label: 'Running back'},
     {value: 'WR', label: 'Receiver'},
     {value: 'TE', label: 'Tight end'},
-    {value: 'QK', label: 'Kicker'},
+    {value: 'K', label: 'Kicker'},
 ]

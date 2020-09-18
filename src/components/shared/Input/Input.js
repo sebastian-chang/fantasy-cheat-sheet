@@ -8,7 +8,8 @@ const Input = props => {
         label={props.label}
         type={props.type}
         name={props.name}
-        value={props.value} />
+        value={props.value}
+        required={props.required} />
     )
 }
 

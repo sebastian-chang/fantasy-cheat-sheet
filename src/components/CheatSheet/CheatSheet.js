@@ -5,6 +5,7 @@ import Select from 'react-select'
 import {
     MDBContainer, MDBListGroup, MDBListGroupItem, MDBIcon,
     MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter,
+    MDBBtn, MDBForm
 } from 'mdbreact'
 
 import Button from '../shared/Button/Button'
@@ -46,7 +47,39 @@ const CheatSheet = props => {
     const [playerModalIsOpen, setPlayerIsOpen] = useState(false)
     // Toggle Modal
     const playerToggleModal = () => {
+        setPlayer({
+            'first_name': '',
+            'last_name': '',
+            'position': '',
+            'current_team': '',
+            'sheet': props.match.params.id,
+        })
         setPlayerIsOpen(!playerModalIsOpen)
+    }
+    // // Whenever the player modal closes reset
+    // const closePlayerModal = () => {
+    //     setPlayer({
+    //         'first_name': '',
+    //         'last_name': '',
+    //         'position': '',
+    //         'current_team': '',
+    //         'sheet': props.match.params.id,
+    //     })
+    //     setPlayerIsOpen(false)
+    // }
+    // If user cancels out of update revert back to previous title
+    const openUpdatePlayerModal = (playerID) => {
+        const index = sheet.players.findIndex(player => { return player.id === playerID })
+        const player = sheet.players[index]
+        console.log('this is what player looks like ', player)
+        setPlayer({
+            'first_name': player.first_name,
+            'last_name': player.last_name,
+            'position': player.position,
+            'current_team': player.current_team,
+            'sheet': props.match.params.id,
+        })
+        setPlayerIsOpen(true)
     }
 
     // API calls
@@ -92,8 +125,9 @@ const CheatSheet = props => {
         )
     }
 
-    const addPlayer = () => {
-        console.log('this is player if I hit submit ', player)
+    const addPlayer = (event) => {
+        event.preventDefault()
+        console.log('what is happening', player)
         return (axios({
             url: apiUrl + `/players/`,
             method: 'POST',
@@ -116,10 +150,31 @@ const CheatSheet = props => {
                     const editedSheet = Object.assign({}, prevSheet, updatedField)
                     return editedSheet
                 })
-                setPlayerIsOpen(false)
             })
+            .then(() => playerToggleModal())
             .catch(console.error)
         )
+    }
+    const deletePlayer = (playerID) => {
+        console.log('delete stuff', playerID)
+        return (axios({
+            url: apiUrl + `/players/${playerID}`,
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${props.user.token}`
+            }
+        }))
+            .then(() => {
+                const index = sheet.players.findIndex(player => { return player.id === playerID })
+                const newPlayers = [...sheet.players]
+                newPlayers.splice(index, 1)
+                setSheet(prevSheet => {
+                    const updatedField = { 'players': newPlayers }
+                    const editedSheet = Object.assign({}, prevSheet, updatedField)
+                    return editedSheet
+                })
+            })
+            .catch(console.error)
     }
 
     // Handles input changes to the sheets title
@@ -165,8 +220,10 @@ const CheatSheet = props => {
         player_list = sheet.players.map(player => {
             if (player) {
                 return (
-                    <MDBListGroupItem key={player.id} href='#/cheat-sheet'>
+                    <MDBListGroupItem key={player.id}>
                         {player.current_team} - {player.position}: {player.first_name} {player.last_name}
+                        <span style={{ 'float': 'right', 'color': 'red', 'paddingLeft': '25px' }} onClick={() => deletePlayer(player.id)}><MDBIcon icon="minus-circle" /></span>
+                        <span style={{ 'float': 'right', 'color': 'green' }} onClick={() => openUpdatePlayerModal(player.id)}><MDBIcon icon="pencil-alt" /></span>
                     </MDBListGroupItem>
                 )
             }
@@ -174,7 +231,8 @@ const CheatSheet = props => {
     }
     return (
         <div>
-            <h2>{sheet.title}<span style={{ 'cursor': 'pointer', 'fontSize': '.9rem' }}><MDBIcon onClick={titleToggleModal} icon="pencil-alt" /></span></h2>
+            <h2>{sheet.title}
+            <span style={{ 'cursor': 'pointer', 'fontSize': '.9rem', 'padding-left': '25px' }}><MDBIcon onClick={titleToggleModal} icon="pencil-alt" /></span></h2>
             <MDBContainer>
                 <MDBListGroup style={{ width: '60vw' }}>
                     {player_list}
@@ -196,25 +254,56 @@ const CheatSheet = props => {
                 </MDBModalFooter>
             </MDBModal>
 
-            {/* Add player modal */}
+            {/* Player modal */}
             <MDBModal isOpen={playerModalIsOpen} toggle={playerToggleModal}>
-                <MDBModalHeader toggle={playerToggleModal}>Update: {sheet.title}</MDBModalHeader>
+                <MDBModalHeader toggle={playerToggleModal}>Add a player</MDBModalHeader>
                 <MDBModalBody>
-                    <Input eventHandler={handlePlayerChange} name={'first_name'} value={player.first_name} label={'First Name'} type={'text'} />
-                    <Input eventHandler={handlePlayerChange} name={'last_name'} value={player.last_name} label={'Last Name'} type={'text'} />
+                    <form onSubmit={addPlayer}>
+                        <Input eventHandler={handlePlayerChange} name={'first_name'} value={player.first_name} label={'First Name'} type={'text'} required={true} />
+                        <Input eventHandler={handlePlayerChange} name={'last_name'} value={player.last_name} label={'Last Name'} type={'text'} required={true} />
 
-                    {/* Dropdown menus */}
-                    <span>Player Position</span>
-                    <Select name={'position'} label='Position' autoFocus={true} onChange={handlePositionChange} options={positions} />
-                    <span>Team</span>
-                    <Select name={'current_team'} autoFocus={true} onChange={handleTeamChange} options={teams} />
+                        {/* Dropdown menus */}
+                        <Select
+                            name={'position'}
+                            label='Position'
+                            autoFocus={true}
+                            onChange={handlePositionChange}
+                            options={positions}
+                            placeholder={'Select a position'}
+                            value={positions.filter(position => position.value === player.position)}
+                        />
+                        {!props.disabled && (
+                            <input tabIndex={-1}
+                                autoComplete="off"
+                                style={{ opacity: 0, height: 0 }}
+                                value={player.position}
+                                onChange={() => ''}
+                                required={true} />
+                        )}
+                        <br />
+                        <Select
+                            name={'current_team'}
+                            autoFocus={true}
+                            onChange={handleTeamChange}
+                            options={teams}
+                            placeholder={'Select a team'}
+                            value={teams.filter(team => team.value === player.current_team)}
+                        />
+                        {!props.disabled && (
+                            <input tabIndex={-1}
+                                autoComplete="off"
+                                style={{ opacity: 0, height: 0 }}
+                                value={player.current_team}
+                                onChange={() => ''}
+                                required={true} />
+                        )}
+                        {/* Footer */}
+                        <div sytle={{ 'position': 'absolute', 'right': 0, 'background': '#eee' }}>
+                            <Button clickFunction={playerToggleModal} buttonLabel={'Cancel'} type={'button'} />
+                            <Button buttonLabel={'Add Player'} type={'submit'} />
+                        </div>
+                    </form>
                 </MDBModalBody>
-
-                {/* Footer */}
-                <MDBModalFooter style={{ 'background': '#eee' }}>
-                    <Button clickFunction={playerToggleModal} buttonLabel={'Cancel'} />
-                    <Button clickFunction={addPlayer} buttonLabel={'Add Player'} />
-                </MDBModalFooter>
             </MDBModal>
         </div>
     )

@@ -16,6 +16,7 @@ const CheatSheet = props => {
   const [modalIsOpen, setIsOpen] = useState(false)
   // Toggle Modal
   const toggleModal = () => {
+    setTitle({ 'title': '' })
     setIsOpen(!modalIsOpen)
   }
 
