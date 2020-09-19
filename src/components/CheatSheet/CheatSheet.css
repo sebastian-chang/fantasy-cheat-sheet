@@ -1,0 +1,173 @@
+.cheatsheet {
+    padding-bottom: 20px;
+}
+.playerCard {
+    color: white;
+    margin: 5px;
+    transition: 0.3s ease;
+}
+.playerCard:hover {
+    margin: 0px;
+}
+
+/* teams */
+/* Arizona Cardinals */
+.ARI {
+    background: #97233f;
+    border-bottom: 5px solid #000;
+}
+/* Atlanta Falcons */
+.ATL {
+    background: #A71930;
+    border-bottom: 5px solid #000;
+}
+/* Baltimore Ravens */
+.BAL {
+    background: #241773;
+    border-bottom: 5px solid #000;
+}
+/* Buffalo Bills */
+.BUF {
+    background: #00338D;
+    border-bottom: 5px solid #C60C30;
+}
+/* Carolina Panthers */
+.CAR {
+    background: #0085CA;
+    border-bottom: 5px solid #101820;
+}
+/* Chicago Bears */
+.CHI {
+    background: #0B162A;
+    border-bottom: 5px solid #C83803;
+}
+/* Cincinnati Bengals */
+.CIN {
+    background: #FB4F14;
+    border-bottom: 5px solid #000;
+}
+/* Cleveland Browns */
+.CLE {
+    background: #311D00;
+    border-bottom: 5px solid #FF3C00;
+}
+/* Dallas Cowboys */
+.DAL {
+    background: #003594;
+    border-bottom: 5px solid #869397;
+}
+/* Denver Broncos */
+.DEN {
+    background: #FB4F14;
+    border-bottom: 5px solid #002244;
+}
+/* Detriot Lions */
+.DET {
+    background: #0076B6;
+    border-bottom: 5px solid #B0B7BC;
+}
+/* Green Bay Packers */
+.GB {
+    background: #203731;
+    border-bottom: 5px solid #FFB612;
+}
+/* Houston Texans */
+.HOU {
+    background: #03202F;
+    border-bottom: 5px solid #A71930;
+}
+/* Indianapolis Colts */
+.IND {
+    background: #002C5F;
+    border-bottom: 5px solid #A2AAAD;
+}
+/* Jacksonville Jaguars */
+.JAX {
+    background: #101820;
+    border-bottom: 5px solid #D7A22A;
+}
+/* Kansas City Chiefs */
+.KC {
+    background: #E31837;
+    border-bottom: 5px solid #FFB81C;
+}
+/* Los Angeles Chargers */
+.LAC {
+    background: #002A5E;
+    border-bottom: 5px solid #FFC20E;
+}
+/* Los Angeles Rams */
+.LAR {
+    background: #003594;
+    border-bottom: 5px solid #FFA300;
+}
+/* Miami Dolphins */
+.MIA {
+    background: #008E97;
+    border-bottom: 5px solid #FC4C02;
+}
+/* Minnesota Vikings */
+.MIN {
+    background: #4F2683;
+    border-bottom: 5px solid #FFC62F;
+}
+/* New England Patriots */
+.NE {
+    background: #002244;
+    border-bottom: 5px solid #C60C30;
+}
+/* New Orleans Saints */
+.MP {
+    background: #D3BC8D;
+    border-bottom: 5px solid #101820;
+}
+/* New York Giants */
+.NYG {
+    background: #0B2265;
+    border-bottom: 5px solid #A71930;
+}
+/* New York Jets */
+.NYJ {
+    background: #125740;
+    border-bottom: 5px solid #fff;
+}
+/* Las Vegas Raiders */
+.LV {
+    background: #000;
+    border-bottom: 5px solid #A5ACAF;
+}
+/* Philadelphia Eagles */
+.PHI {
+    background: #004C54;
+    border-bottom: 5px solid #A5ACAF;
+}
+/* Pittsburgh Steelers */
+.PIT {
+    background: #FFB612;
+    border-bottom: 5px solid #101820;
+}
+/* San Francisco 49ers */
+.SF {
+    background: #AA0000;
+    border-bottom: 5px solid #B3995D;
+}
+/* Seattle Seahawks */
+.SEA {
+    background: #002244;
+    border-bottom: 5px solid #69BE28;
+}
+/* Tampa Bay Buccaneers */
+.TB {
+    background: #D50A0A;
+    border-bottom: 5px solid #FF7900;
+}
+/* Tennessee Titans */
+.TEN {
+    background: #0C2340;
+    border-bottom: 5px solid #4B92DB;
+}
+/* Washington Team */
+.WAS {
+    background: #773141;
+    border-bottom: 5px solid #FFB612;
+}

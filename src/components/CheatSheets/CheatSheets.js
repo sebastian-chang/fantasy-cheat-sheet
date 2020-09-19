@@ -61,7 +61,7 @@ const CheatSheet = props => {
       })
       .catch(error => {
         console.error
-        msgAlert({
+        props.msgAlert({
           heading: 'Create sheet failed with error: ' + error.message,
           message: messages.createdSheetSuccess,
           variant: 'danger'
@@ -90,7 +90,7 @@ const CheatSheet = props => {
           <form onSubmit={createSheet}>
             <Input eventHandler={handleChange} name={'title'} value={title.title} label={'Title'} type={'text'} />
             <div sytle={{ 'position': 'absolute', 'right': 0, 'background': '#eee' }}>
-              <Button clickFunction={toggleModal} buttonLabel={'Close'} />
+              <Button clickFunction={toggleModal} type={'button'} buttonLabel={'Close'} />
               <Button buttonLabel={'Create Sheet'} type={'submit'} />
             </div>
           </form>

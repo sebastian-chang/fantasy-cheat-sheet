@@ -4,9 +4,10 @@ import Select from 'react-select'
 
 import {
     MDBContainer, MDBListGroup, MDBListGroupItem, MDBIcon,
-    MDBModal, MDBModalHeader, MDBModalBody,
+    MDBModal, MDBModalHeader, MDBModalBody, MDBBadge
 } from 'mdbreact'
 
+import './CheatSheet.css'
 import Button from '../shared/Button/Button'
 import Input from '../shared/Input/Input'
 
@@ -307,21 +308,21 @@ const CheatSheet = props => {
         player_list = sheet.players.map(player => {
             if (player) {
                 return (
-                    <MDBListGroupItem key={player.id}>
+                    <MDBListGroupItem key={player.id} className={'playerCard ' + player.current_team}>
                         {player.current_team} - {player.position}: {player.first_name} {player.last_name}
-                        <span style={{ 'float': 'right', 'color': 'red', 'paddingLeft': '25px' }} onClick={() => deletePlayer(player.id)}><MDBIcon icon="minus-circle" /></span>
-                        <span style={{ 'float': 'right', 'color': 'green' }} onClick={() => openUpdatePlayerModal(player.id)}><MDBIcon icon="pencil-alt" /></span>
+                        <span style={{ 'float': 'right', 'marginLeft': '25px' }} onClick={() => deletePlayer(player.id)}><MDBIcon icon="trash-alt" /></span>
+                        <span style={{ 'float': 'right' }} onClick={() => openUpdatePlayerModal(player.id)}><MDBIcon icon="pencil-alt" /></span>
                     </MDBListGroupItem>
                 )
             }
         })
     }
     return (
-        <div>
+        <div className='col-12 col-md-9'>
             <h2>{sheet.title}
                 <span style={{ 'cursor': 'pointer', 'fontSize': '.9rem', 'paddingLeft': '25px' }}><MDBIcon onClick={titleToggleModal} icon="pencil-alt" /></span></h2>
-            <MDBContainer>
-                <MDBListGroup style={{ width: '60vw' }}>
+            <MDBContainer className='cheatsheet'>
+                <MDBListGroup>
                     {player_list}
                 </MDBListGroup>
             </MDBContainer>
@@ -334,7 +335,7 @@ const CheatSheet = props => {
                 <MDBModalHeader toggle={cancelUpdate}>Update title</MDBModalHeader>
                 <MDBModalBody>
                     <form onSubmit={updateSheet}>
-                        <Input eventHandler={handleSheetChange} name={'title'} value={sheet.title} label={'Title'} type={'text'} required={true}/>
+                        <Input eventHandler={handleSheetChange} name={'title'} value={sheet.title} label={'Title'} type={'text'} required={true} />
                         {/* Footer */}
                         <div sytle={{ 'position': 'absolute', 'right': 0, 'background': '#eee' }}>
                             <Button clickFunction={cancelUpdate} buttonLabel={'Cancel'} />
