@@ -6,6 +6,7 @@ import {
     MDBContainer, MDBListGroup, MDBListGroupItem, MDBIcon,
     MDBModal, MDBModalHeader, MDBModalBody, MDBBadge
 } from 'mdbreact'
+import {Roller} from 'react-awesome-spinners'
 
 import './CheatSheet.css'
 import Button from '../shared/Button/Button'
@@ -19,6 +20,7 @@ import messages from '../AutoDismissAlert/messages'
 
 const CheatSheet = props => {
     const [updating, setUpdating] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [sheet, setSheet] = useState({})
     const [player, setPlayer] = useState({
         'first_name': '',
@@ -109,7 +111,7 @@ const CheatSheet = props => {
             })
             .catch(error => {
                 console.error
-                msgAlert({
+                props.msgAlert({
                     heading: 'Delete sheet failed with error: ' + error.message,
                     message: messages.deletedSheetFailure,
                     variant: 'danger'
@@ -140,7 +142,7 @@ const CheatSheet = props => {
             })
             .catch(error => {
                 console.error
-                msgAlert({
+                props.msgAlert({
                     heading: 'Update sheet failed with error: ' + error.message,
                     message: messages.updatedSheetFailure,
                     variant: 'danger'
@@ -152,6 +154,7 @@ const CheatSheet = props => {
     // Player API calls
     const addPlayer = (event) => {
         event.preventDefault()
+        setLoading(true)
         console.log('what is happening', player)
         return (axios({
             url: apiUrl + `/players/`,
@@ -175,16 +178,19 @@ const CheatSheet = props => {
                     const editedSheet = Object.assign({}, prevSheet, updatedField)
                     return editedSheet
                 })
+                playerToggleModal()
+                setLoading(false)
                 props.msgAlert({
                     heading: 'Create player success',
                     message: messages.createdPlayerSuccess,
                     variant: 'success'
                 })
             })
-            .then(() => playerToggleModal())
+            // .then(() => )
             .catch(error => {
                 console.error
-                msgAlert({
+                setLoading(false)
+                props.msgAlert({
                     heading: 'Create player failed with error: ' + error.message,
                     message: messages.createdPlayerFailure,
                     variant: 'danger'
@@ -222,7 +228,7 @@ const CheatSheet = props => {
             .then(() => playerToggleModal())
             .catch(error => {
                 console.error
-                msgAlert({
+                props.msgAlert({
                     heading: 'Update player failed with error: ' + error.message,
                     message: messages.updatedPlayerFailure,
                     variant: 'danger'
@@ -256,7 +262,7 @@ const CheatSheet = props => {
             })
             .catch(error => {
                 console.error
-                msgAlert({
+                props.msgAlert({
                     heading: 'Delete player failed with error: ' + error.message,
                     message: messages.deletedPlayerFailure,
                     variant: 'danger'
@@ -349,6 +355,7 @@ const CheatSheet = props => {
             <MDBModal isOpen={playerModalIsOpen} toggle={playerToggleModal}>
                 <MDBModalHeader toggle={playerToggleModal}>{updating ? 'Update player' : 'Add a player'}</MDBModalHeader>
                 <MDBModalBody>
+                    {loading ? <Roller /> :
                     <form onSubmit={updating ? updatePlayer : addPlayer}>
                         <Input eventHandler={handlePlayerChange} name={'first_name'} value={player.first_name} label={'First Name'} type={'text'} required={true} />
                         <Input eventHandler={handlePlayerChange} name={'last_name'} value={player.last_name} label={'Last Name'} type={'text'} required={true} />
@@ -393,7 +400,7 @@ const CheatSheet = props => {
                             <Button clickFunction={playerToggleModal} buttonLabel={'Cancel'} type={'button'} />
                             <Button buttonLabel={updating ? 'Update Player' : 'Add Player'} type={'submit'} />
                         </div>
-                    </form>
+                    </form>}
                 </MDBModalBody>
             </MDBModal>
         </div>
