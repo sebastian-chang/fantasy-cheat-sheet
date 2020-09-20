@@ -11,6 +11,7 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 
 import CheatSheets from '../CheatSheets/CheatSheets'
 import CheatSheet from '../CheatSheet/CheatSheet'
+import PlayerDetails from '../PlayerDetails/PlayerDetails'
 
 class App extends Component {
   constructor () {
@@ -58,11 +59,16 @@ class App extends Component {
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
 
+          {/* Cheat Sheets */}
           <AuthenticatedRoute user={user} exact path='/cheat-sheet' render={() => (
             <CheatSheets user={user} msgAlert={this.msgAlert} />
           )} />
           <AuthenticatedRoute user={user} exact path='/cheat-sheet/:id' render={() => (
             <CheatSheet user={user} msgAlert={this.msgAlert} />
+          )} />
+          {/* Player */}
+          <AuthenticatedRoute user={user} exact path='/player/:id' render={() => (
+            <PlayerDetails user={user} msgAlert={this.msgAlert} />
           )} />
         </main>
       </Fragment>

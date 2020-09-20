@@ -8,7 +8,7 @@ import {
 } from 'mdbreact'
 import {Roller} from 'react-awesome-spinners'
 
-import './CheatSheet.css'
+import './CheatSheet.scss'
 import Button from '../shared/Button/Button'
 import Input from '../shared/Input/Input'
 
@@ -200,6 +200,7 @@ const CheatSheet = props => {
     }
     const updatePlayer = (event) => {
         event.preventDefault()
+        setLoading(true)
         return (axios({
             url: apiUrl + `/players/${player.id}/`,
             method: 'PATCH',
@@ -210,15 +211,16 @@ const CheatSheet = props => {
                 player: player
             }
         })
-            .then(() => {
+            .then(res => {
                 const index = sheet.players.findIndex(findPlayer => { return findPlayer.id === player.id })
                 const newPlayers = [...sheet.players]
-                newPlayers[index] = player
+                newPlayers[index] = res.data.player
                 setSheet(prevSheet => {
                     const updatedField = { 'players': newPlayers }
                     const editedSheet = Object.assign({}, prevSheet, updatedField)
                     return editedSheet
                 })
+                setLoading(false)
                 props.msgAlert({
                     heading: 'Update player success',
                     message: messages.updatedPlayerSuccess,
@@ -228,6 +230,7 @@ const CheatSheet = props => {
             .then(() => playerToggleModal())
             .catch(error => {
                 console.error
+                setLoading(false)
                 props.msgAlert({
                     heading: 'Update player failed with error: ' + error.message,
                     message: messages.updatedPlayerFailure,
@@ -315,7 +318,9 @@ const CheatSheet = props => {
             if (player) {
                 return (
                     <MDBListGroupItem key={player.id} className={'playerCard ' + player.current_team}>
-                        {player.current_team} - {player.position}: {player.first_name} {player.last_name}
+                        <Link to={`/player/${player.id}`} className='playerLink'>
+                        {player.position} - {player.current_team}: {player.first_name} {player.last_name}
+                        </Link>
                         <span style={{ 'float': 'right', 'marginLeft': '25px' }} onClick={() => deletePlayer(player.id)}><MDBIcon icon="trash-alt" /></span>
                         <span style={{ 'float': 'right' }} onClick={() => openUpdatePlayerModal(player.id)}><MDBIcon icon="pencil-alt" /></span>
                     </MDBListGroupItem>

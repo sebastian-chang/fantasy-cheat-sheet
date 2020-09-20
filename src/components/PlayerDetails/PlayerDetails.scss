@@ -1,0 +1,45 @@
+.playerInfoBackground {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    // background: opacify($color: #000, $amount: 0.9);
+    // opacity: .3;
+}
+.playerInfoCard {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    align-items: center;
+    flex-wrap: wrap;
+    opacity: 1.0 !important;
+}
+.playerInfoImage {
+    margin: 3px;
+    padding: 10px 0 0 10px;
+}
+.infoCard {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 0 0 5px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    & p {
+        padding-left: 3rem;
+        margin: 0 0 10px;
+    }
+    & .infoLabel {
+        color: #999;
+        padding-right: 5px;
+    }
+}
+.playerInfoName {
+    margin-top: 1rem;
+    margin-left: 3rem;
+}
+.playerInfoFooter {
+    background: inherit;
+    border: 0;
+}
