@@ -57,11 +57,11 @@ Something something something
 
 ### Wireframe
 
-![wireframe_home](https://i.imgur.com/BUdwuSM.png)
+<!-- ![wireframe_home](https://i.imgur.com/BUdwuSM.png)
 ![wireframe_sign](https://i.imgur.com/6EKrtLd.png)
 ![wireframe_items](https://i.imgur.com/hfjnGcj.png)
 ![wireframe_find_item](https://i.imgur.com/DJap7q2.png)
 ![wireframe_my_cart](https://i.imgur.com/Bzne2Nj.png)
-![wireframe_all_orders](https://i.imgur.com/VpQIY6p.png)
+![wireframe_all_orders](https://i.imgur.com/VpQIY6p.png) -->
 
 ---
