@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import Select from 'react-select'
 
 import {
     MDBContainer, MDBListGroup, MDBListGroupItem, MDBIcon,
-    MDBModal, MDBModalHeader, MDBModalBody, MDBBadge
+    MDBModal, MDBModalHeader, MDBModalBody
 } from 'mdbreact'
 import {Roller} from 'react-awesome-spinners'
 
@@ -67,7 +67,6 @@ const CheatSheet = props => {
     const openUpdatePlayerModal = (playerID) => {
         const index = sheet.players.findIndex(player => { return player.id === playerID })
         const player = sheet.players[index]
-        console.log('this is what player looks like ', player)
         setPlayer({
             'first_name': player.first_name,
             'last_name': player.last_name,
@@ -119,6 +118,7 @@ const CheatSheet = props => {
             })
     }
 
+    // Update cheat sheet
     const updateSheet = (event) => {
         event.preventDefault()
         return (axios({
@@ -152,10 +152,10 @@ const CheatSheet = props => {
     }
 
     // Player API calls
+    // Create a new player
     const addPlayer = (event) => {
         event.preventDefault()
         setLoading(true)
-        console.log('what is happening', player)
         return (axios({
             url: apiUrl + `/players/`,
             method: 'POST',
@@ -168,11 +168,8 @@ const CheatSheet = props => {
         })
             .then(res => {
                 // setSheet(res.data.sheet)
-                console.log('this is add player response', res.data.player)
-                console.log('this is what the sheet looks like', sheet)
                 const newPlayers = [...sheet.players]
                 newPlayers.push(res.data.player)
-                console.log('this is new players', newPlayers)
                 setSheet(prevSheet => {
                     const updatedField = { 'players': newPlayers }
                     const editedSheet = Object.assign({}, prevSheet, updatedField)
@@ -198,6 +195,7 @@ const CheatSheet = props => {
             })
         )
     }
+    //Update player information
     const updatePlayer = (event) => {
         event.preventDefault()
         setLoading(true)
@@ -239,8 +237,8 @@ const CheatSheet = props => {
             })
         )
     }
+    // Remove a player from the cheat sheet
     const deletePlayer = (playerID) => {
-        console.log('delete stuff', playerID)
         return (axios({
             url: apiUrl + `/players/${playerID}`,
             method: 'DELETE',

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Chart } from 'react-charts'
 import { Line } from 'react-chartjs-2'
 import Lodash from 'lodash'
 
@@ -13,7 +12,7 @@ const StatGraph = props => {
     // API call to get player stats data
     useEffect(() => {
         axios({
-            url: apiUrl + `/qb-stat/${props.match.params.id}`,
+            url: apiUrl + `/qb-stat/${props.pid}`,
             headers: {
                 'Authorization': `Token ${props.user.token}`
             }
@@ -32,15 +31,16 @@ const StatGraph = props => {
         return color
     }
 
+    // User lodash to group seasons together
     const season_group = Lodash.groupBy(playerStats, 'season')
     const data = {}
     const datasets = []
+    // Format player stat data to be used by ChartJS2
     for (const key in season_group) {
         let qbrating_data = []
         for (let i in season_group[key]) {
             // qbrating_data.push([i + 1, season_group[key][i]['qbrating']])
             qbrating_data.push(season_group[key][i]['qbrating'])
-            // console.log('what? ', i, season_group[key][i]['qbrating'], season_group[key][i]['opponent'])
         }
         const color = getRandomColor()
         const season_data = {
@@ -54,6 +54,7 @@ const StatGraph = props => {
         }
         datasets.push(season_data)
     }
+    // Create labels for graph
     data['labels'] = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12', 'Week 13', 'Week 14', 'Week 15', 'Week 16',]
     data['datasets'] = datasets
 

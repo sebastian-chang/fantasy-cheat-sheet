@@ -14,7 +14,7 @@ const StatChart = props => {
     // API call to get player stats data
     useEffect(() => {
         axios({
-            url: apiUrl + `/qb-stat/${props.match.params.id}`,
+            url: apiUrl + `/qb-stat/${props.pid}`,
             headers: {
                 'Authorization': `Token ${props.user.token}`
             }

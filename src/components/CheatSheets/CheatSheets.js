@@ -32,9 +32,9 @@ const CheatSheet = props => {
       .catch(console.error)
   }, [])
 
+  // Creates a new cheat sheet
   const createSheet = (event) => {
     event.preventDefault()
-    console.log('sheets before new add ', sheets)
     return (axios({
       url: apiUrl + '/sheets/',
       method: 'POST',

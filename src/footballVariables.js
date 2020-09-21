@@ -1,3 +1,4 @@
+// Create an array of objects containing NFL team names with abbervations as values
 export const teams = [
     {value: 'ARI', label: 'Arizona Cardinals'},
     {value: 'ATL', label: 'Atlanta Falcons'},
@@ -32,6 +33,7 @@ export const teams = [
     {value: 'TEN', label: 'Tennessee Titans'},
     {value: 'WAS', label: 'Washington Team'},
 ]
+// Create an array of objects for offensives fantasy positions and their abbrevations as values
 export const positions = [
     {value: 'QB', label: 'Quarterback'},
     {value: 'RB', label: 'Running back'},

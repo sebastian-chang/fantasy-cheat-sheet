@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Replaces content while loading content
 const Loading = (Component) => {
     return function WihLoadingComponent ({ isLoading, ...props }) {
         if (!isLoading) return <Component {...props} />

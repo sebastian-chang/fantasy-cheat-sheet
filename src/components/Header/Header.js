@@ -18,9 +18,10 @@ const unauthenticatedOptions = (
 )
 
 const alwaysOptions = (
-  <Fragment>
-    <Nav.Link href="#graph/7549">Home</Nav.Link>
-  </Fragment>
+  ''
+  // <Fragment>
+  //   <Nav.Link href="#graph/7549">Home</Nav.Link>
+  // </Fragment>
 )
 
 const Header = ({ user }) => (
