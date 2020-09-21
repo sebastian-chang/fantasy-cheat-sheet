@@ -76,7 +76,7 @@ const CheatSheet = props => {
 
   const sheetList = sheets.map(sheet => (
     <Link key={sheet.id} to={`/cheat-sheet/${sheet.id}`}>
-      <MDBListGroupItem className="d-flex justify-content-between align-items-center"><h4>{sheet.title}</h4>
+      <MDBListGroupItem className="d-flex justify-content-between align-items-center sheets-links"><h4>{sheet.title}</h4>
         <MDBBadge color="primary" pill>{sheet.players.length}</MDBBadge>
       </MDBListGroupItem>
     </Link>
