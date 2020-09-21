@@ -4,9 +4,9 @@ import Select from 'react-select'
 
 import {
     MDBContainer, MDBListGroup, MDBListGroupItem, MDBIcon,
-    MDBModal, MDBModalHeader, MDBModalBody
+    MDBModal, MDBModalHeader, MDBModalBody, MDBBtn
 } from 'mdbreact'
-import {Roller} from 'react-awesome-spinners'
+import { Roller } from 'react-awesome-spinners'
 
 import './CheatSheet.scss'
 import Button from '../shared/Button/Button'
@@ -317,7 +317,7 @@ const CheatSheet = props => {
                 return (
                     <MDBListGroupItem key={player.id} className={'playerCard ' + player.current_team}>
                         <Link to={`/player/${player.id}`} className='playerLink'>
-                        {player.position} - {player.current_team}: {player.first_name} {player.last_name}
+                            {player.position} - {player.current_team}: {player.first_name} {player.last_name}
                         </Link>
                         <span style={{ 'float': 'right', 'marginLeft': '25px' }} onClick={() => deletePlayer(player.id)}><MDBIcon icon="trash-alt" /></span>
                         <span style={{ 'float': 'right' }} onClick={() => openUpdatePlayerModal(player.id)}><MDBIcon icon="pencil-alt" /></span>
@@ -327,7 +327,7 @@ const CheatSheet = props => {
         })
     }
     return (
-        <div className='col-12 col-md-9'>
+        <div className='col-12 col-md-9 cheat-sheet-card'>
             <h2>{sheet.title}
                 <span style={{ 'cursor': 'pointer', 'fontSize': '.9rem', 'paddingLeft': '25px' }}><MDBIcon onClick={titleToggleModal} icon="pencil-alt" /></span></h2>
             <MDBContainer className='cheatsheet'>
@@ -335,9 +335,14 @@ const CheatSheet = props => {
                     {player_list}
                 </MDBListGroup>
             </MDBContainer>
-            <Button clickFunction={props.history.goBack} buttonLabel={'Back'} />
-            <Button clickFunction={playerToggleModal} buttonLabel={'Add player'} />
-            <Button clickFunction={deleteSheet} buttonLabel={'Delete Sheet'} />
+            {/* <Button clickFunction={props.history.goBack} buttonLabel={'Back'} /> */}
+            <MDBBtn onClick={props.history.goBack} color='blue-grey'>Back</MDBBtn>
+            <MDBBtn onClick={playerToggleModal} color='primary'>Add player</MDBBtn>
+            <span className='sheet-delete'>
+                <MDBBtn onClick={deleteSheet} color='danger'>Delete</MDBBtn>
+            </span>
+            {/* <Button clickFunction={playerToggleModal} buttonLabel={'Add player'} /> */}
+            {/* <Button clickFunction={deleteSheet} buttonLabel={'Delete Sheet'} /> */}
 
             {/* Update cheat sheet title modal */}
             <MDBModal isOpen={titleModalIsOpen} toggle={cancelUpdate}>
@@ -347,8 +352,8 @@ const CheatSheet = props => {
                         <Input eventHandler={handleSheetChange} name={'title'} value={sheet.title} label={'Title'} type={'text'} required={true} />
                         {/* Footer */}
                         <div sytle={{ 'position': 'absolute', 'right': 0, 'background': '#eee' }}>
-                            <Button clickFunction={cancelUpdate} buttonLabel={'Cancel'} />
-                            <Button buttonLabel={'Update Sheet'} type={'submit'} />
+                            <MDBBtn onClick={cancelUpdate} color='blue-grey'>Cancel</MDBBtn>
+                            <MDBBtn type='submit' color='primary'>Submit</MDBBtn>
                         </div>
                     </form>
                 </MDBModalBody>
@@ -359,51 +364,51 @@ const CheatSheet = props => {
                 <MDBModalHeader toggle={playerToggleModal}>{updating ? 'Update player' : 'Add a player'}</MDBModalHeader>
                 <MDBModalBody>
                     {loading ? <Roller /> :
-                    <form onSubmit={updating ? updatePlayer : addPlayer}>
-                        <Input eventHandler={handlePlayerChange} name={'first_name'} value={player.first_name} label={'First Name'} type={'text'} required={true} />
-                        <Input eventHandler={handlePlayerChange} name={'last_name'} value={player.last_name} label={'Last Name'} type={'text'} required={true} />
+                        <form onSubmit={updating ? updatePlayer : addPlayer}>
+                            <Input eventHandler={handlePlayerChange} name={'first_name'} value={player.first_name} label={'First Name'} type={'text'} required={true} />
+                            <Input eventHandler={handlePlayerChange} name={'last_name'} value={player.last_name} label={'Last Name'} type={'text'} required={true} />
 
-                        {/* Dropdown menus */}
-                        <Select
-                            name={'position'}
-                            label='Position'
-                            autoFocus={true}
-                            onChange={handlePositionChange}
-                            options={positions}
-                            placeholder={'Select a position'}
-                            value={positions.filter(position => position.value === player.position)}
-                        />
-                        {!props.disabled && (
-                            <input tabIndex={-1}
-                                autoComplete="off"
-                                style={{ opacity: 0, height: 0 }}
-                                value={player.position}
-                                onChange={() => ''}
-                                required={true} />
-                        )}
-                        <br />
-                        <Select
-                            name={'current_team'}
-                            autoFocus={true}
-                            onChange={handleTeamChange}
-                            options={teams}
-                            placeholder={'Select a team'}
-                            value={teams.filter(team => team.value === player.current_team)}
-                        />
-                        {!props.disabled && (
-                            <input tabIndex={-1}
-                                autoComplete="off"
-                                style={{ opacity: 0, height: 0 }}
-                                value={player.current_team}
-                                onChange={() => ''}
-                                required={true} />
-                        )}
-                        {/* Footer */}
-                        <div sytle={{ 'position': 'absolute', 'right': 0, 'background': '#eee' }}>
-                            <Button clickFunction={playerToggleModal} buttonLabel={'Cancel'} type={'button'} />
-                            <Button buttonLabel={updating ? 'Update Player' : 'Add Player'} type={'submit'} />
-                        </div>
-                    </form>}
+                            {/* Dropdown menus */}
+                            <Select
+                                name={'position'}
+                                label='Position'
+                                autoFocus={true}
+                                onChange={handlePositionChange}
+                                options={positions}
+                                placeholder={'Select a position'}
+                                value={positions.filter(position => position.value === player.position)}
+                            />
+                            {!props.disabled && (
+                                <input tabIndex={-1}
+                                    autoComplete="off"
+                                    style={{ opacity: 0, height: 0 }}
+                                    value={player.position}
+                                    onChange={() => ''}
+                                    required={true} />
+                            )}
+                            <br />
+                            <Select
+                                name={'current_team'}
+                                autoFocus={true}
+                                onChange={handleTeamChange}
+                                options={teams}
+                                placeholder={'Select a team'}
+                                value={teams.filter(team => team.value === player.current_team)}
+                            />
+                            {!props.disabled && (
+                                <input tabIndex={-1}
+                                    autoComplete="off"
+                                    style={{ opacity: 0, height: 0 }}
+                                    value={player.current_team}
+                                    onChange={() => ''}
+                                    required={true} />
+                            )}
+                            {/* Footer */}
+                            <div sytle={{ 'position': 'absolute', 'right': 0, 'background': '#eee' }}>
+                                <MDBBtn onClick={playerToggleModal} color='blue-grey'>Cancel</MDBBtn>
+                                <MDBBtn type='submit' color='primary'>{updating ? 'Update Player' : 'Add Player'}</MDBBtn>
+                            </div>
+                        </form>}
                 </MDBModalBody>
             </MDBModal>
         </div>

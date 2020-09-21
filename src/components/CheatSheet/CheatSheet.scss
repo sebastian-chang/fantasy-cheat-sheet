@@ -1,3 +1,10 @@
+.cheat-sheet-card {
+    background-color: white;
+    padding: 1.2rem;
+    margin-top: 2rem;
+    border-radius: 5px;
+    box-shadow: 10px 10px 8px;
+}
 .cheatsheet {
     padding-bottom: 20px;
 }
@@ -12,6 +19,9 @@
 .playerLink{
     color: inherit;
     text-decoration: none;
+}
+.sheet-delete {
+    float: right;
 }
 /* teams */
 /* Arizona Cardinals */

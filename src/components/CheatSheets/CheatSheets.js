@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { MDBModal, MDBModalHeader, MDBModalBody } from 'mdbreact'
+import { MDBModal, MDBModalHeader, MDBModalBody, MDBBtn, MDBContainer, MDBListGroup, MDBListGroupItem, MDBBadge } from 'mdbreact'
 
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
 import messages from '../AutoDismissAlert/messages'
 
-import Button from '../shared/Button/Button'
 import Input from '../shared/Input/Input'
+import './CheatSheets.scss'
 
 const CheatSheet = props => {
   const [sheets, setSheets] = useState([])
@@ -76,22 +76,29 @@ const CheatSheet = props => {
 
   const sheetList = sheets.map(sheet => (
     <Link key={sheet.id} to={`/cheat-sheet/${sheet.id}`}>
-      <h4>{sheet.title}</h4>
+      <MDBListGroupItem className="d-flex justify-content-between align-items-center"><h4>{sheet.title}</h4>
+        <MDBBadge color="primary" pill>{sheet.players.length}</MDBBadge>
+      </MDBListGroupItem>
     </Link>
   ))
 
   return (
     <div className='sheets'>
-      {sheetList}
-      <Button buttonLabel={'Create Sheet'} clickFunction={toggleModal} />
+      <MDBContainer>
+        <MDBListGroup>
+          {sheetList}
+        </MDBListGroup>
+      </MDBContainer>
+      {/* <Button buttonLabel={'Create Sheet'} clickFunction={toggleModal} /> */}
+      <MDBBtn className='sheets-create' onClick={toggleModal} color='primary'>Create Sheet</MDBBtn>
       <MDBModal isOpen={modalIsOpen} toggle={toggleModal}>
         <MDBModalHeader toggle={toggleModal}>Create Cheat Sheet</MDBModalHeader>
         <MDBModalBody>
           <form onSubmit={createSheet}>
             <Input eventHandler={handleChange} name={'title'} value={title.title} label={'Title'} type={'text'} />
             <div sytle={{ 'position': 'absolute', 'right': 0, 'background': '#eee' }}>
-              <Button clickFunction={toggleModal} type={'button'} buttonLabel={'Close'} />
-              <Button buttonLabel={'Create Sheet'} type={'submit'} />
+              <MDBBtn onClick={toggleModal} color='blue-grey'>Close</MDBBtn>
+              <MDBBtn type='submit' color='primary'>Submit</MDBBtn>
             </div>
           </form>
         </MDBModalBody>
