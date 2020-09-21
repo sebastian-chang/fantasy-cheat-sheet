@@ -1,6 +1,6 @@
 {
   "name": "fantasy-cheat-sheet",
-  "homepage": "https://<USERNAME>.github.io/<REPO NAME>",
+  "homepage": "https://sebastian-chang.github.io/fantasy-cheat-sheet",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
