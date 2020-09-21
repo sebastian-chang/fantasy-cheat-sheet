@@ -13,6 +13,7 @@ import CheatSheets from '../CheatSheets/CheatSheets'
 import CheatSheet from '../CheatSheet/CheatSheet'
 import PlayerDetails from '../PlayerDetails/PlayerDetails'
 import StatChart from '../PlayerDetails/StatChart/StatChart'
+import StatGraph from '../PlayerDetails/StatGraph/StatGraph'
 
 class App extends Component {
   constructor () {
@@ -73,6 +74,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/stat/:id' render={() => (
             <StatChart user={user} msgAlert={this.msgAlert} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/graph/:id' render={() => (
+            <StatGraph user={user} msgAlert={this.msgAlert} />
           )} />
         </main>
       </Fragment>
