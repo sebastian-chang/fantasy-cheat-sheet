@@ -10,6 +10,7 @@ const StatChart = props => {
     const [playerStats, setPlayerStats] = useState({})
     const oppList = {}
     const seasonList = {}
+    const location = { 'HOME': 'Home', 'AWAY': 'Away' }
 
     // API call to get player stats data
     useEffect(() => {
@@ -65,6 +66,15 @@ const StatChart = props => {
                 >
                     Opponent
                 </TableHeaderColumn>
+                <TableHeaderColumn
+                    dataField='homeoraway'
+                    filterFormatted
+                    dataFormat={enumFormatter}
+                    formatExtraData={location}
+                    filter={{ type: 'SelectFilter', options: location }}
+                >
+                    Home or Away
+                </TableHeaderColumn>
                 <TableHeaderColumn dataField='passcompletions' >Pass Completions</TableHeaderColumn>
                 <TableHeaderColumn dataField='passattempts' >Pass Attempts</TableHeaderColumn>
                 <TableHeaderColumn dataField='passpct' >Pass Percentage</TableHeaderColumn>
@@ -77,7 +87,7 @@ const StatChart = props => {
     }
     return (
         <div>
-            { table }
+            { table}
         </div>
     )
 }
