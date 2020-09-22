@@ -1,6 +1,7 @@
 # Fantasy Cheat Sheet: A Description
 
-Something something something
+An application that can help aid a user with the selection of a NFL player in their fantasy leagues. A user would be able to see stats from previous seasons.
+Graph visualizations of those stats for easy understanding of players performances.  Ideally this could access a player's current season and could work in all leagues for all sports around the world.
 
 ## Important Links
 
@@ -8,6 +9,14 @@ Something something something
 - [Deployed API](https://fantasy-backend-cheat-sheet.herokuapp.com/)
 - [GitHub Repo](https://github.com/sebastian-chang/fantasy-cheat-sheet)
 - [Deployed Client](https://sebastian-chang.github.io/fantasy-cheat-sheet/#/)
+
+## Installation
+
+1. Download zip.
+2. Unzip the application.
+3. Change directories into `fantasy-cheat-sheet-master`
+4. Run `npm install` to install dependencies.
+5. Run the front-end development server with `npm run start`.
 
 ## Planning Story
 
@@ -50,18 +59,13 @@ Something something something
 
 ### Unsolved Problems
 
-- Creating data science queries to see different visualizations.
+- Creating more data science queries to see different visualizations.
 - Find more responsive 3rd party sports API.
 
-## Images
+### Images
 
-### Wireframe
+#### Wireframe
 
-<!-- ![wireframe_home](https://i.imgur.com/BUdwuSM.png)
-![wireframe_sign](https://i.imgur.com/6EKrtLd.png)
-![wireframe_items](https://i.imgur.com/hfjnGcj.png)
-![wireframe_find_item](https://i.imgur.com/DJap7q2.png)
-![wireframe_my_cart](https://i.imgur.com/Bzne2Nj.png)
-![wireframe_all_orders](https://i.imgur.com/VpQIY6p.png) -->
+![wireframe_home](https://github.com/sebastian-chang/fantasy-cheat-sheet/blob/master/public/img/Capstone-Wireframe.jpg)
 
 ---
