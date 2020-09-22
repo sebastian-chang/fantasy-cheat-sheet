@@ -16,9 +16,12 @@
 .playerCard:hover {
     margin: 0px;
 }
-.playerLink{
+.playerLink {
     color: inherit;
     text-decoration: none;
+    & :hover {
+        text-decoration: none;
+    }
 }
 .sheet-delete {
     float: right;
@@ -28,17 +31,19 @@
 .ARI {
     background: #97233f;
     border-bottom: 5px solid #000;
-    & .playerLink:hover, span:hover {
-        color: #FFB612;
+    & .playerLink:hover,
+    span:hover {
+        color: #ffb612;
         cursor: pointer;
     }
 }
 /* Atlanta Falcons */
 .ATL {
-    background: #A71930;
+    background: #a71930;
     border-bottom: 5px solid #000;
-    & .playerLink:hover, span:hover {
-        color: #A5ACAF;
+    & .playerLink:hover,
+    span:hover {
+        color: #a5acaf;
         cursor: pointer;
     }
 }
@@ -46,53 +51,59 @@
 .BAL {
     background: #241773;
     border-bottom: 5px solid #000;
-    & .playerLink:hover, span:hover {
-        color: #9E7C0C;
+    & .playerLink:hover,
+    span:hover {
+        color: #9e7c0c;
         cursor: pointer;
     }
 }
 /* Buffalo Bills */
 .BUF {
-    background: #00338D;
-    border-bottom: 5px solid #C60C30;
-    & .playerLink:hover, span:hover {
-        color: #C60C30;
+    background: #00338d;
+    border-bottom: 5px solid #c60c30;
+    & .playerLink:hover,
+    span:hover {
+        color: #c60c30;
         cursor: pointer;
     }
 }
 /* Carolina Panthers */
 .CAR {
-    background: #0085CA;
+    background: #0085ca;
     border-bottom: 5px solid #101820;
-    & .playerLink:hover, span:hover {
+    & .playerLink:hover,
+    span:hover {
         color: #101820;
         cursor: pointer;
     }
 }
 /* Chicago Bears */
 .CHI {
-    background: #0B162A;
-    border-bottom: 5px solid #C83803;
-    & .playerLink:hover, span:hover {
-        color: #C83803;
+    background: #0b162a;
+    border-bottom: 5px solid #c83803;
+    & .playerLink:hover,
+    span:hover {
+        color: #c83803;
         cursor: pointer;
     }
 }
 /* Cincinnati Bengals */
 .CIN {
-    background: #FB4F14;
+    background: #fb4f14;
     border-bottom: 5px solid #000;
-    & .playerLink:hover, span:hover {
+    & .playerLink:hover,
+    span:hover {
         color: #000;
         cursor: pointer;
     }
 }
 /* Cleveland Browns */
 .CLE {
-    background: #311D00;
-    border-bottom: 5px solid #FF3C00;
-    & .playerLink:hover, span:hover {
-        color: #FF3C00;
+    background: #311d00;
+    border-bottom: 5px solid #ff3c00;
+    & .playerLink:hover,
+    span:hover {
+        color: #ff3c00;
         cursor: pointer;
     }
 }
@@ -100,134 +111,149 @@
 .DAL {
     background: #003594;
     border-bottom: 5px solid #869397;
-    & .playerLink:hover, span:hover {
+    & .playerLink:hover,
+    span:hover {
         color: #869397;
         cursor: pointer;
     }
 }
 /* Denver Broncos */
 .DEN {
-    background: #FB4F14;
+    background: #fb4f14;
     border-bottom: 5px solid #002244;
-    & .playerLink:hover, span:hover {
+    & .playerLink:hover,
+    span:hover {
         color: #002244;
         cursor: pointer;
     }
 }
 /* Detriot Lions */
 .DET {
-    background: #0076B6;
-    border-bottom: 5px solid #B0B7BC;
-    & .playerLink:hover, span:hover {
-        color: #B0B7BC;
+    background: #0076b6;
+    border-bottom: 5px solid #b0b7bc;
+    & .playerLink:hover,
+    span:hover {
+        color: #b0b7bc;
         cursor: pointer;
     }
 }
 /* Green Bay Packers */
 .GB {
     background: #203731;
-    border-bottom: 5px solid #FFB612;
-    & .playerLink:hover, span:hover {
-        color: #FFB612;
+    border-bottom: 5px solid #ffb612;
+    & .playerLink:hover,
+    span:hover {
+        color: #ffb612;
         cursor: pointer;
     }
 }
 /* Houston Texans */
 .HOU {
-    background: #03202F;
-    border-bottom: 5px solid #A71930;
-    & .playerLink:hover, span:hover {
-        color: #A71930;
+    background: #03202f;
+    border-bottom: 5px solid #a71930;
+    & .playerLink:hover,
+    span:hover {
+        color: #a71930;
         cursor: pointer;
     }
 }
 /* Indianapolis Colts */
 .IND {
-    background: #002C5F;
-    border-bottom: 5px solid #A2AAAD;
-    & .playerLink:hover, span:hover {
-        color: #A2AAAD;
+    background: #002c5f;
+    border-bottom: 5px solid #a2aaad;
+    & .playerLink:hover,
+    span:hover {
+        color: #a2aaad;
         cursor: pointer;
     }
 }
 /* Jacksonville Jaguars */
 .JAX {
     background: #101820;
-    border-bottom: 5px solid #D7A22A;
-    & .playerLink:hover, span:hover {
+    border-bottom: 5px solid #d7a22a;
+    & .playerLink:hover,
+    span:hover {
         color: #006778;
         cursor: pointer;
     }
 }
 /* Kansas City Chiefs */
 .KC {
-    background: #E31837;
-    border-bottom: 5px solid #FFB81C;
-    & .playerLink:hover, span:hover {
-        color: #FFB81C;
+    background: #e31837;
+    border-bottom: 5px solid #ffb81c;
+    & .playerLink:hover,
+    span:hover {
+        color: #ffb81c;
         cursor: pointer;
     }
 }
 /* Los Angeles Chargers */
 .LAC {
-    background: #0080C6;
-    border-bottom: 5px solid #FFC20E;
-    & .playerLink:hover, span:hover {
-        color: #FFC20E;
+    background: #0080c6;
+    border-bottom: 5px solid #ffc20e;
+    & .playerLink:hover,
+    span:hover {
+        color: #ffc20e;
         cursor: pointer;
     }
 }
 /* Los Angeles Rams */
 .LAR {
     background: #003594;
-    border-bottom: 5px solid #FFA300;
-    & .playerLink:hover, span:hover {
-        color: #FF8200;
+    border-bottom: 5px solid #ffa300;
+    & .playerLink:hover,
+    span:hover {
+        color: #ff8200;
         cursor: pointer;
     }
 }
 /* Miami Dolphins */
 .MIA {
-    background: #008E97;
-    border-bottom: 5px solid #FC4C02;
-    & .playerLink:hover, span:hover {
+    background: #008e97;
+    border-bottom: 5px solid #fc4c02;
+    & .playerLink:hover,
+    span:hover {
         color: #005778;
         cursor: pointer;
     }
 }
 /* Minnesota Vikings */
 .MIN {
-    background: #4F2683;
-    border-bottom: 5px solid #FFC62F;
-    & .playerLink:hover, span:hover {
-        color: #FFC62F;
+    background: #4f2683;
+    border-bottom: 5px solid #ffc62f;
+    & .playerLink:hover,
+    span:hover {
+        color: #ffc62f;
         cursor: pointer;
     }
 }
 /* New England Patriots */
 .NE {
     background: #002244;
-    border-bottom: 5px solid #C60C30;
-    & .playerLink:hover, span:hover {
-        color: #B0B7BC;
+    border-bottom: 5px solid #c60c30;
+    & .playerLink:hover,
+    span:hover {
+        color: #b0b7bc;
         cursor: pointer;
     }
 }
 /* New Orleans Saints */
 .NO {
-    background: #D3BC8D;
+    background: #d3bc8d;
     border-bottom: 5px solid #101820;
-    & .playerLink:hover, span:hover {
+    & .playerLink:hover,
+    span:hover {
         color: #101820;
         cursor: pointer;
     }
 }
 /* New York Giants */
 .NYG {
-    background: #0B2265;
-    border-bottom: 5px solid #A71930;
-    & .playerLink:hover, span:hover {
-        color: #A71930;
+    background: #0b2265;
+    border-bottom: 5px solid #a71930;
+    & .playerLink:hover,
+    span:hover {
+        color: #a71930;
         cursor: pointer;
     }
 }
@@ -235,7 +261,8 @@
 .NYJ {
     background: #125740;
     border-bottom: 5px solid #fff;
-    & .playerLink:hover, span:hover {
+    & .playerLink:hover,
+    span:hover {
         color: #000;
         cursor: pointer;
     }
@@ -243,72 +270,80 @@
 /* Las Vegas Raiders */
 .LV {
     background: #000;
-    border-bottom: 5px solid #A5ACAF;
-    & .playerLink:hover, span:hover {
-        color: #A5ACAF;
+    border-bottom: 5px solid #a5acaf;
+    & .playerLink:hover,
+    span:hover {
+        color: #a5acaf;
         cursor: pointer;
     }
 }
 /* Philadelphia Eagles */
 .PHI {
-    background: #004C54;
-    border-bottom: 5px solid #A5ACAF;
-    & .playerLink:hover, span:hover {
-        color: #A5ACAF;
+    background: #004c54;
+    border-bottom: 5px solid #a5acaf;
+    & .playerLink:hover,
+    span:hover {
+        color: #a5acaf;
         cursor: pointer;
     }
 }
 /* Pittsburgh Steelers */
 .PIT {
-    background: #FFB612;
+    background: #ffb612;
     border-bottom: 5px solid #101820;
-    & .playerLink:hover, span:hover {
+    & .playerLink:hover,
+    span:hover {
         color: #101820;
         cursor: pointer;
     }
 }
 /* San Francisco 49ers */
 .SF {
-    background: #AA0000;
-    border-bottom: 5px solid #B3995D;
-    & .playerLink:hover, span:hover {
-        color: #B3995D;
+    background: #aa0000;
+    border-bottom: 5px solid #b3995d;
+    & .playerLink:hover,
+    span:hover {
+        color: #b3995d;
         cursor: pointer;
     }
 }
 /* Seattle Seahawks */
 .SEA {
     background: #002244;
-    border-bottom: 5px solid #69BE28;
-    & .playerLink:hover, span:hover {
-        color: #A5ACAF;
+    border-bottom: 5px solid #69be28;
+    & .playerLink:hover,
+    span:hover {
+        color: #a5acaf;
         cursor: pointer;
     }
 }
 /* Tampa Bay Buccaneers */
 .TB {
-    background: #D50A0A;
-    border-bottom: 5px solid #FF7900;
-    & .playerLink:hover, span:hover {
-        color: #FF7900;
+    background: #d50a0a;
+    border-bottom: 5px solid #ff7900;
+    & .playerLink:hover,
+    span:hover {
+        color: #ff7900;
         cursor: pointer;
     }
 }
 /* Tennessee Titans */
 .TEN {
-    background: #0C2340;
-    border-bottom: 5px solid #4B92DB;
-    & .playerLink:hover, span:hover {
-        color: #C8102E;
+    background: #0c2340;
+    border-bottom: 5px solid #4b92db;
+    & .playerLink:hover,
+    span:hover {
+        color: #c8102e;
         cursor: pointer;
     }
 }
 /* Washington Team */
 .WAS {
     background: #773141;
-    border-bottom: 5px solid #FFB612;
-    & .playerLink:hover, span:hover {
-        color: #FFB612;
+    border-bottom: 5px solid #ffb612;
+    & .playerLink:hover,
+    span:hover {
+        color: #ffb612;
         cursor: pointer;
     }
 }

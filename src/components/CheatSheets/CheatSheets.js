@@ -85,7 +85,7 @@ const CheatSheet = props => {
   return (
     <div className='sheets'>
       <MDBContainer>
-        <MDBListGroup>
+        <MDBListGroup className='sheets-group'>
           {sheetList}
         </MDBListGroup>
       </MDBContainer>

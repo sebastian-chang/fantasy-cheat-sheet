@@ -4,6 +4,18 @@
 .sheets-create {
     margin-top: 1rem;
 }
-.sheets-links:hover{
-    text-transform: uppercase;
+.sheets-links {
+    // margin: 3px;
+    background-color: white;
+    filter: brightness(95%);
+    transition: 0.3s ease;
+}
+.sheets-links:hover {
+    // margin: 0px;
+    filter: brightness(120%);
+    background-color: white;
+    position: relative;
+    z-index: 9999;
+    pointer-events: auto;
+    text-decoration: none;
 }
