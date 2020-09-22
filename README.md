@@ -30,7 +30,7 @@ Graph visualizations of those stats for easy understanding of players performanc
 - Use 3rd party API for additional player info.
 - Create visualizations for player stats.
 
-### User Stories
+## User Stories
 
 - As an unregistered user, I would like to sign up with email and password.
 - As a registered user, I would like to sign in with email and password.
@@ -39,13 +39,13 @@ Graph visualizations of those stats for easy understanding of players performanc
 - As a signed in user, I would like to create and delete a cheat sheet.
 - As a signed in user, I would like to add and remove a player to a sheet.
 
-### Reach Goal(s)
+## Reach Goal(s)
 
 - As a signed in user, I would like to view player details from 3rd party API.
 - As a signed in user, I would like to view player stats from 3rd party API.
 - As a signed in user, I would like to see different graphs of data stats.
 
-### Technologies Used
+## Technologies Used
 
 - React
 - Javascript
@@ -57,15 +57,23 @@ Graph visualizations of those stats for easy understanding of players performanc
 - PostgreSQL
 - Pandas
 
-### Unsolved Problems
+## Unsolved Problems
 
 - Creating more data science queries to see different visualizations.
 - Find more responsive 3rd party sports API.
 
-### Images
+## Images
 
-#### Wireframe
+### Wireframe
 
 ![wireframe_home](https://github.com/sebastian-chang/fantasy-cheat-sheet/blob/master/public/img/Capstone-Wireframe.jpg)
+
+### Screenshots
+
+![screenshot_sheet](https://github.com/sebastian-chang/fantasy-cheat-sheet/blob/master/public/img/fcs-sheet.png)
+
+![screenshot_chart](https://github.com/sebastian-chang/fantasy-cheat-sheet/blob/master/public/img/fcs-chart.png)
+
+![screenshot_graph](https://github.com/sebastian-chang/fantasy-cheat-sheet/blob/master/public/img/fcs-graph.png)
 
 ---
