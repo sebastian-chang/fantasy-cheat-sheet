@@ -14,9 +14,10 @@ Graph visualizations of those stats for easy understanding of players performanc
 
 1. Download zip.
 2. Unzip the application.
-3. Change directories into `fantasy-cheat-sheet-master`
-4. Run `npm install` to install dependencies.
-5. Run the front-end development server with `npm run start`.
+3. Change directories into `fantasy-cheat-sheet-master`.
+4. Upate `package.json` file with your GitHub account name and repo.
+5. Run `npm install` to install dependencies.
+6. Run the front-end development server with `npm start`.
 
 ## Planning Story
 
