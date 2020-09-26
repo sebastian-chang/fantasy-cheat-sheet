@@ -55,7 +55,7 @@ const PlayerDetails = props => {
                                 <p><span className='infoLabel'>Weight:</span> {player.weight}</p>
                                 <p><span className='infoLabel'>DOB:</span> {player.dob}</p>
                                 <p><span className='infoLabel'>Age:</span> {player.age}</p>
-                                <p><span className='infoLabel'>Team:</span> {player.city_team == '' ? player.current_team : player.city_team}</p>
+                                <p><span className='infoLabel'>Team:</span> {player.city_team === '' ? player.current_team : player.city_team}</p>
                                 <p><span className='infoLabel'>Position:</span> {player.position}</p>
                             </div>
                         </div>

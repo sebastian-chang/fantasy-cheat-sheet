@@ -109,7 +109,7 @@ const CheatSheet = props => {
                 })
             })
             .catch(error => {
-                console.error
+                // console.error
                 props.msgAlert({
                     heading: 'Delete sheet failed with error: ' + error.message,
                     message: messages.deletedSheetFailure,
@@ -141,7 +141,7 @@ const CheatSheet = props => {
                 })
             })
             .catch(error => {
-                console.error
+                // console.error
                 props.msgAlert({
                     heading: 'Update sheet failed with error: ' + error.message,
                     message: messages.updatedSheetFailure,
@@ -157,7 +157,7 @@ const CheatSheet = props => {
         event.preventDefault()
         setLoading(true)
         return (axios({
-            url: apiUrl + `/players/`,
+            url: apiUrl + '/players/',
             method: 'POST',
             headers: {
                 'Authorization': `Token ${props.user.token}`
@@ -185,7 +185,7 @@ const CheatSheet = props => {
             })
             // .then(() => )
             .catch(error => {
-                console.error
+                // console.error
                 setLoading(false)
                 props.msgAlert({
                     heading: 'Create player failed with error: ' + error.message,
@@ -195,7 +195,7 @@ const CheatSheet = props => {
             })
         )
     }
-    //Update player information
+    // Update player information
     const updatePlayer = (event) => {
         event.preventDefault()
         setLoading(true)
@@ -227,7 +227,7 @@ const CheatSheet = props => {
             })
             .then(() => playerToggleModal())
             .catch(error => {
-                console.error
+                // console.error
                 setLoading(false)
                 props.msgAlert({
                     heading: 'Update player failed with error: ' + error.message,
@@ -262,7 +262,7 @@ const CheatSheet = props => {
                 })
             })
             .catch(error => {
-                console.error
+                // console.error
                 props.msgAlert({
                     heading: 'Delete player failed with error: ' + error.message,
                     message: messages.deletedPlayerFailure,
@@ -310,9 +310,9 @@ const CheatSheet = props => {
     }
 
     // Generates a list of players in each sheet
-    let player_list = ''
+    let playerList = ''
     if (sheet.players) {
-        player_list = sheet.players.map(player => {
+        playerList = sheet.players.map(player => {
             if (player) {
                 return (
                     <MDBListGroupItem key={player.id} className={'playerCard ' + player.current_team}>
@@ -332,7 +332,7 @@ const CheatSheet = props => {
                 <span style={{ 'cursor': 'pointer', 'fontSize': '.9rem', 'paddingLeft': '25px' }}><MDBIcon onClick={titleToggleModal} icon="pencil-alt" /></span></h2>
             <MDBContainer className='cheatsheet'>
                 <MDBListGroup>
-                    {player_list}
+                    {playerList}
                 </MDBListGroup>
             </MDBContainer>
             {/* <Button clickFunction={props.history.goBack} buttonLabel={'Back'} /> */}
@@ -363,8 +363,8 @@ const CheatSheet = props => {
             <MDBModal isOpen={playerModalIsOpen} toggle={playerToggleModal}>
                 <MDBModalHeader toggle={playerToggleModal}>{updating ? 'Update player' : 'Add a player'}</MDBModalHeader>
                 <MDBModalBody>
-                    {loading ? <Roller /> :
-                        <form onSubmit={updating ? updatePlayer : addPlayer}>
+                    {loading ? <Roller />
+                        : <form onSubmit={updating ? updatePlayer : addPlayer}>
                             <Input eventHandler={handlePlayerChange} name={'first_name'} value={player.first_name} label={'First Name'} type={'text'} required={true} />
                             <Input eventHandler={handlePlayerChange} name={'last_name'} value={player.last_name} label={'Last Name'} type={'text'} required={true} />
 

@@ -1,13 +1,13 @@
 let apiUrl
 const apiUrls = {
-  production: 'https://fantasy-backend-cheat-sheet.herokuapp.com',
-  development: 'http://localhost:8000'
+    production: 'https://fantasy-backend-cheat-sheet.herokuapp.com',
+    development: 'http://localhost:8000'
 }
 
 if (window.location.hostname === 'localhost') {
-  apiUrl = apiUrls.development
+    apiUrl = apiUrls.development
 } else {
-  apiUrl = apiUrls.production
+    apiUrl = apiUrls.production
 }
 
 export default apiUrl

@@ -32,30 +32,30 @@ const StatGraph = props => {
     }
 
     // User lodash to group seasons together
-    const season_group = Lodash.groupBy(playerStats, 'season')
+    const seasonGroup = Lodash.groupBy(playerStats, 'season')
     const data = {}
     const datasets = []
     // Format player stat data to be used by ChartJS2
-    for (const key in season_group) {
-        let qbrating_data = []
-        for (let i in season_group[key]) {
-            // qbrating_data.push([i + 1, season_group[key][i]['qbrating']])
-            qbrating_data.push(season_group[key][i]['qbrating'])
+    for (const key in seasonGroup) {
+        const qbRatingData = []
+        for (const i in seasonGroup[key]) {
+            // qbRatingData.push([i + 1, seasonGroup[key][i]['qbrating']])
+            qbRatingData.push(seasonGroup[key][i]['qbrating'])
         }
         const color = getRandomColor()
-        const season_data = {
+        const seasonData = {
             label: `Season ${key}`,
             fill: false,
             lineTension: 0.5,
             backgroundColor: color,
             borderColor: color,
             borderWidth: 1,
-            data: qbrating_data
+            data: qbRatingData
         }
-        datasets.push(season_data)
+        datasets.push(seasonData)
     }
     // Create labels for graph
-    data['labels'] = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12', 'Week 13', 'Week 14', 'Week 15', 'Week 16',]
+    data['labels'] = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12', 'Week 13', 'Week 14', 'Week 15', 'Week 16']
     data['datasets'] = datasets
 
     const lineChart = (

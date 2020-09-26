@@ -26,7 +26,7 @@ const StatChart = props => {
 
     // React Bootstrap table function
     function enumFormatter (cell, row, enumObject) {
-        return enumObject[cell];
+        return enumObject[cell]
     }
 
     // Loop through data to create new objects for filtering rows

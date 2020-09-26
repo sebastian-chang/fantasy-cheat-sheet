@@ -14,66 +14,66 @@ import CheatSheet from '../CheatSheet/CheatSheet'
 import PlayerDetails from '../PlayerDetails/PlayerDetails'
 
 class App extends Component {
-  constructor () {
-    super()
+    constructor () {
+        super()
 
-    this.state = {
-      user: null,
-      msgAlerts: []
+        this.state = {
+            user: null,
+            msgAlerts: []
+        }
     }
-  }
 
-  setUser = user => this.setState({ user })
+    setUser = user => this.setState({ user })
 
-  clearUser = () => this.setState({ user: null })
+    clearUser = () => this.setState({ user: null })
 
-  msgAlert = ({ heading, message, variant }) => {
-    this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })
-  }
+    msgAlert = ({ heading, message, variant }) => {
+        this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })
+    }
 
-  render () {
-    const { msgAlerts, user } = this.state
+    render () {
+        const { msgAlerts, user } = this.state
 
-    return (
-      <Fragment>
-        <Header user={user} />
-        {msgAlerts.map((msgAlert, index) => (
-          <AutoDismissAlert
-            key={index}
-            heading={msgAlert.heading}
-            variant={msgAlert.variant}
-            message={msgAlert.message}
-          />
-        ))}
-        <main className="container">
-          <Route path='/sign-up' render={() => (
-            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
-          )} />
-          <Route path='/sign-in' render={() => (
-            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
-          )} />
-          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
-            <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/change-password' render={() => (
-            <ChangePassword msgAlert={this.msgAlert} user={user} />
-          )} />
+        return (
+            <Fragment>
+                <Header user={user} />
+                {msgAlerts.map((msgAlert, index) => (
+                    <AutoDismissAlert
+                        key={index}
+                        heading={msgAlert.heading}
+                        variant={msgAlert.variant}
+                        message={msgAlert.message}
+                    />
+                ))}
+                <main className="container">
+                    <Route path='/sign-up' render={() => (
+                        <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+                    )} />
+                    <Route path='/sign-in' render={() => (
+                        <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+                    )} />
+                    <AuthenticatedRoute user={user} path='/sign-out' render={() => (
+                        <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
+                    )} />
+                    <AuthenticatedRoute user={user} path='/change-password' render={() => (
+                        <ChangePassword msgAlert={this.msgAlert} user={user} />
+                    )} />
 
-          {/* Cheat Sheets */}
-          <AuthenticatedRoute user={user} exact path='/cheat-sheet' render={() => (
-            <CheatSheets user={user} msgAlert={this.msgAlert} />
-          )} />
-          <AuthenticatedRoute user={user} exact path='/cheat-sheet/:id' render={() => (
-            <CheatSheet user={user} msgAlert={this.msgAlert} />
-          )} />
-          {/* Player */}
-          <AuthenticatedRoute user={user} exact path='/player/:id' render={() => (
-            <PlayerDetails user={user} msgAlert={this.msgAlert} />
-          )} />
-        </main>
-      </Fragment>
-    )
-  }
+                    {/* Cheat Sheets */}
+                    <AuthenticatedRoute user={user} exact path='/cheat-sheet' render={() => (
+                        <CheatSheets user={user} msgAlert={this.msgAlert} />
+                    )} />
+                    <AuthenticatedRoute user={user} exact path='/cheat-sheet/:id' render={() => (
+                        <CheatSheet user={user} msgAlert={this.msgAlert} />
+                    )} />
+                    {/* Player */}
+                    <AuthenticatedRoute user={user} exact path='/player/:id' render={() => (
+                        <PlayerDetails user={user} msgAlert={this.msgAlert} />
+                    )} />
+                </main>
+            </Fragment>
+        )
+    }
 }
 
 export default App

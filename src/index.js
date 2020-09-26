@@ -10,9 +10,9 @@ import App from './components/App/App'
 import { HashRouter } from 'react-router-dom'
 
 const appJsx = (
-  <HashRouter>
-    <App />
-  </HashRouter>
+    <HashRouter>
+        <App />
+    </HashRouter>
 )
 
 ReactDOM.render(appJsx, document.getElementById('root'))
